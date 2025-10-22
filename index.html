@@ -13,7 +13,7 @@
       background: black;
     }
 
-    /* 🎥 Video local */
+    /* 🎥 Video de fondo */
     video {
       position: fixed;
       top: 50%;
@@ -23,6 +23,7 @@
       object-fit: cover;
       transform: translate(-50%, -50%);
       z-index: -1;
+      background: black;
     }
 
     /* 🟡 Logos */
@@ -43,6 +44,7 @@
     @media (max-width: 768px) {
       .overlay { max-width: 90%; }
     }
+
     @media (max-width: 480px) {
       .overlay { max-width: 95%; }
     }
@@ -50,29 +52,35 @@
 </head>
 <body>
 
-  <!-- 🎥 Video de fondo local -->
-  <video autoplay muted loop playsinline>
+  <!-- 🎥 Video local -->
+  <video id="bgvideo" autoplay muted loop playsinline preload="auto">
     <source src="runprix2-no-text.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
   </video>
 
   <!-- 🟡 Logos -->
   <img src="Imattgen 1.png" class="overlay" id="logo1" alt="The RUNPRIX Santiago 2026">
   <img src="Ima4gen 1.png" class="overlay" id="logo2" alt="PRONTO">
 
+  <!-- ⚙️ Animaciones -->
   <script>
     const logo1 = document.getElementById('logo1');
     const logo2 = document.getElementById('logo2');
+    const video = document.getElementById('bgvideo');
 
-    setTimeout(() => { logo1.classList.add('show'); }, 4100);
-    setTimeout(() => {
-      logo1.classList.remove('show');
-      logo1.classList.add('hide');
-      logo2.classList.add('show');
-    }, 6300);
-    setTimeout(() => {
-      logo2.classList.remove('show');
-      logo2.classList.add('hide');
-    }, 10000);
+    // 🔧 Esperar a que el video realmente cargue antes de mostrar logos
+    video.addEventListener('loadeddata', () => {
+      setTimeout(() => { logo1.classList.add('show'); }, 4100);
+      setTimeout(() => {
+        logo1.classList.remove('show');
+        logo1.classList.add('hide');
+        logo2.classList.add('show');
+      }, 6300);
+      setTimeout(() => {
+        logo2.classList.remove('show');
+        logo2.classList.add('hide');
+      }, 10000);
+    });
   </script>
 
 </body>
