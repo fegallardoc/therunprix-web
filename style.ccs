@@ -3,27 +3,28 @@ body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100vh; /* CLAVE para el 100% de la altura de la ventana visible */
+    /* Utiliza 100vh en el HTML/BODY, clave para la altura en general */
+    height: 100vh; 
     overflow: hidden; /* Evita barras de desplazamiento */
     font-family: sans-serif;
 }
 
-/* 1. Contenedor del Video: Se posiciona detrás del contenido */
+/* 1. Contenedor del Video: Usa POSITION: ABSOLUTE para corregir el bug de altura en móviles */
 .video-container {
-    position: fixed;
+    position: absolute; /* CORRECCIÓN CRÍTICA para móviles */
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: -1; /* CORRECCIÓN: Lo mantiene detrás del contenido, pero visible */
+    height: 100%; /* Ocupa el 100% de la altura disponible */
+    z-index: -1; /* Lo mantiene detrás del contenido */
 }
 
-/* 2. El Video en sí: Centrado y cubriendo el área */
+/* 2. El Video en sí: Ajuste responsivo */
 #background-video {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Asegura que el video cubra TODA el área sin distorsión */
-    filter: brightness(0.8); /* Oscurece un poco el video para que el texto resalte */
+    filter: brightness(0.8); /* Oscurece el video */
 }
 
 /* 3. Contenedor para el Contenido (Textos): Centra y se posiciona encima */
@@ -39,7 +40,7 @@ body, html {
     display: flex;
     justify-content: center; 
     align-items: center; 
-    pointer-events: none; /* Permite hacer clic a través si hubiera enlaces en el futuro */
+    pointer-events: none;
 }
 
 /* 4. Estilos para las imágenes de texto */
@@ -50,11 +51,11 @@ body, html {
     width: 1000px; /* Ancho máximo en pantallas grandes */
     height: auto;
     
-    /* Efecto de transición para la aparición controlada por JS */
+    /* Efecto de transición y opacidad inicial (controlada por JS) */
     transition: opacity 1s ease-in-out;
-    opacity: 0; /* Oculto por defecto */
+    opacity: 0; 
     
-    /* Posicionamiento para que solo el Flexbox controle el centrado */
+    /* Posicionamiento y centrado (redundante pero seguro) */
     position: absolute; 
     top: 50%;
     left: 50%;
