@@ -13,7 +13,7 @@
       background: black;
     }
 
-    /* 🎥 Contenedor del video */
+    /* 🎥 Contenedor del video de fondo */
     .video-wrapper {
       position: fixed;
       top: 0;
@@ -33,7 +33,7 @@
       border: 0;
     }
 
-    /* 🟡 Imágenes de texto / logos */
+    /* 🟡 Capas de logos */
     .overlay {
       position: absolute;
       top: 50%;
@@ -48,9 +48,11 @@
     .show { opacity: 1; }
     .hide { opacity: 0; }
 
+    /* 📱 Responsividad */
     @media (max-width: 768px) {
       .overlay { max-width: 90%; }
     }
+
     @media (max-width: 480px) {
       .overlay { max-width: 95%; }
     }
@@ -58,43 +60,48 @@
 </head>
 <body>
 
-  <!-- 🎥 Video de fondo desde Vimeo -->
+  <!-- 🎥 Video de fondo Vimeo -->
   <div class="video-wrapper">
     <iframe 
-      src="https://player.vimeo.com/video/1129666217?background=1&autoplay=1&loop=1&muted=1"
+      src="https://player.vimeo.com/video/1129666217?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;background=1"
       frameborder="0"
       allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
-      title="The RUNPRIX video"
-    ></iframe>
+      title="runprix2-no-text">
+    </iframe>
   </div>
 
   <!-- 🟡 Logos -->
   <img src="Imattgen 1.png" class="overlay" id="logo1" alt="The RUNPRIX Santiago 2026">
   <img src="Ima4gen 1.png" class="overlay" id="logo2" alt="PRONTO">
 
+  <!-- ⚙️ Animaciones -->
   <script>
     const logo1 = document.getElementById('logo1');
     const logo2 = document.getElementById('logo2');
 
-    // Mostrar el primer logo a los 4.1s
+    // Mostrar primer logo (THE RUNPRIX SANTIAGO 2026) a los 4.1s
     setTimeout(() => {
       logo1.classList.add('show');
     }, 4100);
 
-    // Ocultar el primero y mostrar el segundo a los 6.3s
+    // Ocultar primer logo y mostrar "PRONTO" a los 6.3s
     setTimeout(() => {
       logo1.classList.remove('show');
       logo1.classList.add('hide');
       logo2.classList.add('show');
     }, 6300);
 
-    // Desvanecer el segundo logo a los 10s
+    // Desvanecer "PRONTO" a los 10s
     setTimeout(() => {
       logo2.classList.remove('show');
       logo2.classList.add('hide');
     }, 10000);
   </script>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+</body>
+</html>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
 </body>
