@@ -13,7 +13,7 @@
       background: black;
     }
 
-    /* Video de fondo */
+    /* 🎥 Video de fondo responsivo */
     video {
       position: fixed;
       top: 50%;
@@ -25,7 +25,7 @@
       z-index: -1;
     }
 
-    /* Capas de logos */
+    /* 🟡 Imágenes de texto / logos */
     .overlay {
       position: absolute;
       top: 50%;
@@ -34,13 +34,13 @@
       opacity: 0;
       max-width: 80%;
       height: auto;
-    }
-
-    .show {
-      opacity: 1;
       transition: opacity 1.5s ease-in-out;
     }
 
+    .show { opacity: 1; }
+    .hide { opacity: 0; }
+
+    /* 📱 Responsivo */
     @media (max-width: 768px) {
       .overlay { max-width: 90%; }
     }
@@ -56,22 +56,31 @@
     <source src="runprix2-no-text.mp4" type="video/mp4">
   </video>
 
-  <!-- Imagen 1: THE RUNPRIX SANTIAGO 2026 -->
-  <img src="Imattgen 1.png" class="overlay" id="logo1">
-
-  <!-- Imagen 2: PRONTO -->
-  <img src="Ima4gen 1.png" class="overlay" id="logo2">
+  <!-- Logos -->
+  <img src="Imattgen 1.png" class="overlay" id="logo1" alt="The RUNPRIX Santiago 2026">
+  <img src="Ima4gen 1.png" class="overlay" id="logo2" alt="Pronto">
 
   <script>
-    // Mostrar logo 1 a los 4.1 segundos
+    const logo1 = document.getElementById('logo1');
+    const logo2 = document.getElementById('logo2');
+
+    // Mostrar el primer logo a los 4.1s
     setTimeout(() => {
-      document.getElementById('logo1').classList.add('show');
+      logo1.classList.add('show');
     }, 4100);
 
-    // Mostrar logo 2 a los 6.3 segundos
+    // Ocultar el primero y mostrar el segundo a los 6.3s
     setTimeout(() => {
-      document.getElementById('logo2').classList.add('show');
+      logo1.classList.remove('show');
+      logo1.classList.add('hide');
+      logo2.classList.add('show');
     }, 6300);
+
+    // Desvanecer el segundo logo a los 10s
+    setTimeout(() => {
+      logo2.classList.remove('show');
+      logo2.classList.add('hide');
+    }, 10000);
   </script>
 
 </body>
