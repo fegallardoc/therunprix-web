@@ -13,7 +13,7 @@
       background: black;
     }
 
-    /* 🎥 Contenedor del video de fondo */
+    /* 🎥 Contenedor del video */
     .video-wrapper {
       position: fixed;
       top: 0;
@@ -33,7 +33,7 @@
       border: 0;
     }
 
-    /* 🟡 Capas de logos */
+    /* 🟡 Logos */
     .overlay {
       position: absolute;
       top: 50%;
@@ -60,14 +60,13 @@
 </head>
 <body>
 
-  <!-- 🎥 Video Vimeo sin background (funciona con cuenta gratuita) -->
+  <!-- 🎥 Video de fondo YouTube -->
   <div class="video-wrapper">
     <iframe 
-      src="https://player.vimeo.com/video/1129666217?autoplay=1&muted=1&loop=1&controls=0&autopause=0"
+      src="https://www.youtube.com/embed/4FagUwnKjV8?autoplay=1&mute=1&loop=1&playlist=4FagUwnKjV8&controls=0&showinfo=0&modestbranding=1"
       frameborder="0"
-      allow="autoplay; fullscreen; picture-in-picture"
-      referrerpolicy="strict-origin-when-cross-origin"
-      title="The RUNPRIX"
+      allow="autoplay; fullscreen"
+      title="The RUNPRIX video"
     ></iframe>
   </div>
 
@@ -80,7 +79,7 @@
     const logo1 = document.getElementById('logo1');
     const logo2 = document.getElementById('logo2');
 
-    // Mostrar primer logo (THE RUNPRIX SANTIAGO 2026) a los 4.1s
+    // Mostrar primer logo a los 4.1s
     setTimeout(() => {
       logo1.classList.add('show');
     }, 4100);
@@ -99,6 +98,5 @@
     }, 10000);
   </script>
 
-  <script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>
