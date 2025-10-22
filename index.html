@@ -34,27 +34,27 @@
             function updateLogoVisibility() {
                 const currentTime = video.currentTime;
                 
-                // Si el tiempo es menor al logo principal, ambos deben estar ocultos.
+                // 1. Ambos ocultos al inicio o al hacer loop
                 if (currentTime < tiempoLogoPrincipal) {
                     logoPrincipal.style.opacity = '0';
                     logoPronto.style.opacity = '0';
                 } 
-                // Si el tiempo está entre el logo principal y PRONTO
+                // 2. Muestra THE RUNPRIX (4.1s hasta 6.29s)
                 else if (currentTime >= tiempoLogoPrincipal && currentTime < tiempoLogoPronto) {
                     logoPrincipal.style.opacity = '1';
                     logoPronto.style.opacity = '0';
                 }
-                // Si el tiempo es mayor que PRONTO
+                // 3. Muestra PRONTO (a partir de 6.3s)
                 else if (currentTime >= tiempoLogoPronto) {
-                    logoPrincipal.style.opacity = '0'; // Se oculta el logo principal
-                    logoPronto.style.opacity = '1';    // Se muestra PRONTO
+                    logoPrincipal.style.opacity = '0'; 
+                    logoPronto.style.opacity = '1';    
                 }
             }
 
             // Aplicar la función continuamente
             video.ontimeupdate = updateLogoVisibility;
             
-            // Forzar actualización al cargar y buscar (para asegurar el estado inicial)
+            // Forzar el estado inicial tan pronto como el video cargue (soluciona el bug de aparición)
             video.onseeking = updateLogoVisibility;
             video.onloadedmetadata = updateLogoVisibility;
         });
