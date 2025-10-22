@@ -12,16 +12,16 @@ html, body {
   background: black;
 }
 
-/* 🎥 Video en pantalla completa */
+/* 🎥 Video en pantalla completa - POSICIONAMIENTO CORREGIDO */
 #bgvideo {
   position: fixed;
-  top: 0; /* Simplificamos el centrado */
-  left: 0; /* Simplificamos el centrado */
-  width: 100vw; /* Usamos viewport width */
-  height: 100vh; /* Usamos viewport height */
+  top: 0;   /* CORRECCIÓN: Fija el video en la esquina superior izquierda */
+  left: 0;  /* CORRECCIÓN: Fija el video en la esquina superior izquierda */
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
   z-index: -1;
-  /* Eliminamos el transform: translate(-50%, -50%); ya que usamos top: 0, left: 0, width: 100vw, height: 100vh */
+  /* Eliminamos el 'transform' conflictivo */
 }
 
 /* 🟡 Imágenes superpuestas */
@@ -34,6 +34,8 @@ html, body {
   max-width: 80%;
   height: auto;
   transition: opacity 1.5s ease-in-out;
+  /* Aseguramos que los logos estén encima del video (-1) */
+  z-index: 10; 
 }
 
 .show { opacity: 1; }
@@ -45,4 +47,3 @@ html, body {
 @media (max-width: 480px) {
   .overlay { max-width: 95%; }
 }
-/* NOTA: Eliminamos la llave de cierre extra (}) que estaba al final del archivo CSS original */
