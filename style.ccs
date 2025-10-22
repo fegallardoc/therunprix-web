@@ -8,46 +8,51 @@ body, html {
     font-family: sans-serif;
 }
 
-/* Contenedor del video: Ocupa todo el espacio de la pantalla */
+/* 1. Contenedor para el Video */
 .video-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Ocupa el 100% del body (que ahora es 100vh) */
+    height: 100%; /* Ocupa el 100% del body (100vh) */
     z-index: -100;
 }
 
-/* Estilos para el video de fondo dentro de su contenedor */
+/* 2. El Video en sí: Centrado y cubriendo el área */
 #background-video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que el video cubra toda el área */
+    object-fit: cover; /* Asegura que el video cubra TODA el área sin distorsión */
     filter: brightness(0.8); /* Oscurece un poco el video */
 }
 
-/* Contenedor para el contenido superpuesto (centrado) */
+/* 3. Contenedor para el Contenido (Textos) */
 .content-overlay {
+    /* Necesita ser FIXED/ABSOLUTE para flotar sobre el video y llenar la pantalla */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    /* Flexbox para centrar todo el contenido */
     display: flex;
-    justify-content: center; /* Centrado vertical */
-    align-items: center; /* Centrado horizontal */
-    pointer-events: none;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    pointer-events: none; /* Permite hacer clic a través si hubiera enlaces */
 }
 
-/* Estilos para las imágenes de texto */
+/* 4. Estilos para las imágenes de texto */
 #logo-principal,
 #logo-pronto {
+    /* Ajuste de tamaño responsivo */
     max-width: 90%; 
-    width: 1000px; 
+    width: 1000px; /* Ancho máximo en pantallas grandes */
     height: auto;
+    /* Efecto de transición para la aparición controlada por JS */
     transition: opacity 1s ease-in-out;
-    opacity: 0; /* Oculto por defecto, el JS lo controlará */
+    opacity: 0; /* Oculto por defecto */
     
+    /* Centrado absoluto */
     position: absolute; 
     top: 50%;
     left: 50%;
@@ -56,4 +61,12 @@ body, html {
 
 #logo-pronto {
     z-index: 10; 
+}
+
+/* Opcional: Ajustes para dispositivos muy pequeños */
+@media (max-width: 600px) {
+    #logo-principal,
+    #logo-pronto {
+        max-width: 95%; 
+    }
 }
