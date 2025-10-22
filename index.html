@@ -8,10 +8,12 @@
 </head>
 <body>
 
-    <video id="background-video" autoplay loop muted playsinline>
-        <source src="runprix2 no text.mp4" type="video/mp4">
-        Tu navegador no soporta el tag de video.
-    </video>
+    <div class="video-container">
+        <video id="background-video" autoplay loop muted playsinline>
+            <source src="runprix2 no text.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+    </div>
 
     <div class="content-overlay">
         <img id="logo-principal" src="Imattgen 1.png" alt="THE RUNPRIX SANTIAGO 2026">
@@ -25,41 +27,36 @@
             const logoPrincipal = document.getElementById('logo-principal');
             const logoPronto = document.getElementById('logo-pronto');
 
-            // Ocultar los logos al inicio
-            logoPrincipal.style.opacity = '0';
-            logoPronto.style.opacity = '0';
+            // Tiempos de aparición en segundos
+            const tiempoLogoPrincipal = 4.1; // 00:04:10
+            const tiempoLogoPronto = 6.3;    // 00:06:30
 
-            // Tiempo de aparición en segundos
-            // 00:04:10 es 4.1 segundos
-            const tiempoLogoPrincipal = 4.1;
-            // 00:06:30 es 6.3 segundos
-            const tiempoLogoPronto = 6.3;
-
-            // Función que se ejecuta continuamente mientras el video se reproduce
-            video.ontimeupdate = function() {
+            function updateLogoVisibility() {
                 const currentTime = video.currentTime;
-
-                // Control para el Logo Principal (THE RUNPRIX)
-                if (currentTime >= tiempoLogoPrincipal && logoPrincipal.style.opacity === '0') {
-                    logoPrincipal.style.opacity = '1';
-                } else if (currentTime < tiempoLogoPrincipal && logoPrincipal.style.opacity === '1') {
-                    // Si el video vuelve al inicio, ocultar el logo
+                
+                // Si el tiempo es menor al logo principal, ambos deben estar ocultos.
+                if (currentTime < tiempoLogoPrincipal) {
                     logoPrincipal.style.opacity = '0';
-                }
-
-                // Control para el Logo "PRONTO"
-                if (currentTime >= tiempoLogoPronto && logoPronto.style.opacity === '0') {
-                    logoPronto.style.opacity = '1';
-                } else if (currentTime < tiempoLogoPronto && logoPronto.style.opacity === '1') {
-                    // Si el video vuelve al inicio, ocultar el logo
+                    logoPronto.style.opacity = '0';
+                } 
+                // Si el tiempo está entre el logo principal y PRONTO
+                else if (currentTime >= tiempoLogoPrincipal && currentTime < tiempoLogoPronto) {
+                    logoPrincipal.style.opacity = '1';
                     logoPronto.style.opacity = '0';
                 }
-            };
+                // Si el tiempo es mayor que PRONTO
+                else if (currentTime >= tiempoLogoPronto) {
+                    logoPrincipal.style.opacity = '0'; // Se oculta el logo principal
+                    logoPronto.style.opacity = '1';    // Se muestra PRONTO
+                }
+            }
+
+            // Aplicar la función continuamente
+            video.ontimeupdate = updateLogoVisibility;
             
-            // Esto asegura que los logos se muestren inmediatamente si el video se carga en un tiempo avanzado (aunque no debería pasar con 'loop')
-            // y que los logos desaparezcan al final de la reproducción para el loop
-            video.onseeking = video.ontimeupdate;
-            video.onloadedmetadata = video.ontimeupdate;
+            // Forzar actualización al cargar y buscar (para asegurar el estado inicial)
+            video.onseeking = updateLogoVisibility;
+            video.onloadedmetadata = updateLogoVisibility;
         });
     </script>
 
