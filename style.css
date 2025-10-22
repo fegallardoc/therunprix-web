@@ -5,7 +5,8 @@
 }
 
 html, body {
-  height: 100%;
+  /* SOLUCIÓN: Usar 100vh para asegurar la altura completa de la ventana */
+  height: 100vh;
   width: 100%;
   overflow: hidden;
   background: black;
@@ -14,13 +15,13 @@ html, body {
 /* 🎥 Video en pantalla completa */
 #bgvideo {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
+  top: 0; /* Simplificamos el centrado */
+  left: 0; /* Simplificamos el centrado */
+  width: 100vw; /* Usamos viewport width */
+  height: 100vh; /* Usamos viewport height */
   object-fit: cover;
-  transform: translate(-50%, -50%);
   z-index: -1;
+  /* Eliminamos el transform: translate(-50%, -50%); ya que usamos top: 0, left: 0, width: 100vw, height: 100vh */
 }
 
 /* 🟡 Imágenes superpuestas */
@@ -44,3 +45,4 @@ html, body {
 @media (max-width: 480px) {
   .overlay { max-width: 95%; }
 }
+/* NOTA: Eliminamos la llave de cierre extra (}) que estaba al final del archivo CSS original */
