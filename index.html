@@ -10,7 +10,7 @@
 
     <div class="video-background-wrap">
         <iframe 
-            src="https://player.vimeo.com/video/1129666217?autoplay=1&loop=1&muted=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479" 
+            src="https://player.vimeo.com/video/1129666217?autoplay=1&loop=1&muted=1&background=1" 
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
             frameborder="0" 
             allow="autoplay; fullscreen; picture-in-picture" 
@@ -21,18 +21,41 @@
     </div>
 
     <div class="content-overlay">
-        <img id="logo-principal" src="Imattgen 1.png" class="overlay" alt="The RUNPRIX Santiago 2026">
-        <img id="logo-pronto" src="Ima4gen 1.png" class="overlay" alt="PRONTO">
+        <img id="logo-principal" src="Imattgen 1.png" class="logo-item logo-hidden" alt="The RUNPRIX Santiago 2026">
+        <img id="logo-pronto" src="Ima4gen 1.png" class="logo-item logo-hidden" alt="PRONTO">
     </div>
 
-    </body>
-</html>
-      setTimeout(() => {
-        logo2.classList.remove('show');
-        logo2.classList.add('hide');
-      }, 10000);
-    });
-  </script>
+    <script>
+        const logoPrincipal = document.getElementById('logo-principal');
+        const logoPronto = document.getElementById('logo-pronto');
+
+        function showLogo(logo) {
+            logo.classList.remove('logo-hidden');
+            logo.classList.add('logo-show');
+        }
+        
+        function hideLogo(logo) {
+            logo.classList.remove('logo-show');
+            logo.classList.add('logo-hidden');
+        }
+
+        // Lógica de aparición:
+
+        // 1. Mostrar logo principal a 4.1s (4100ms)
+        setTimeout(() => { showLogo(logoPrincipal); }, 4100);
+
+        // 2. Ocultar logo principal y mostrar PRONTO a 6.3s (6300ms)
+        setTimeout(() => { 
+            hideLogo(logoPrincipal); 
+            showLogo(logoPronto); 
+        }, 6300);
+
+        // 3. Ocultar PRONTO a 10s (10000ms), para el loop
+        setTimeout(() => { 
+            hideLogo(logoPronto); 
+        }, 10000);
+
+    </script>
 
 </body>
 </html>
