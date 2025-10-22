@@ -5,45 +5,63 @@
 }
 
 html, body {
-  /* SOLUCIÓN: Usar 100vh para asegurar la altura completa de la ventana */
+  /* CLAVE: 100vh para asegurar la altura completa de la ventana */
   height: 100vh;
   width: 100%;
   overflow: hidden;
   background: black;
 }
 
-/* 🎥 Video en pantalla completa - POSICIONAMIENTO CORREGIDO */
-#bgvideo {
-  position: fixed;
-  top: 0;   /* CORRECCIÓN: Fija el video en la esquina superior izquierda */
-  left: 0;  /* CORRECCIÓN: Fija el video en la esquina superior izquierda */
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-  /* Eliminamos el 'transform' conflictivo */
+/* 1. Contenedor del video de Vimeo (cubre la pantalla) */
+.video-background-wrap {
+    position: fixed; /* Lo fija en la ventana del navegador */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Altura completa de la ventana */
+    z-index: -1; /* Lo enviamos al fondo */
+    overflow: hidden;
 }
 
-/* 🟡 Imágenes superpuestas */
+/* 2. El iframe de Vimeo */
+.video-background-wrap iframe {
+    /* El estilo 'width: 100%; height: 100%;' ya está en el HTML */
+    filter: brightness(0.8); /* Oscurece el video si lo deseas */
+}
+
+/* 🟡 Contenedor de Logos (superposición y centrado) */
+.content-overlay {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; 
+    
+    /* Flexbox para centrar horizontal y verticalmente */
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    pointer-events: none;
+}
+
+/* Estilos para las imágenes de texto */
+/* Usamos el centrado del overlay y solo definimos tamaño y opacidad */
 .overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  max-width: 80%;
-  height: auto;
-  transition: opacity 1.5s ease-in-out;
-  /* Aseguramos que los logos estén encima del video (-1) */
-  z-index: 10; 
+    /* Posicionamiento para que Flexbox lo centre */
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Estilos de visibilidad */
+    opacity: 1; /* Los hacemos visibles por ahora */
+    max-width: 80%;
+    width: 1000px; /* Tamaño máximo */
+    height: auto;
+    z-index: 10;
 }
-
-.show { opacity: 1; }
-.hide { opacity: 0; }
 
 @media (max-width: 768px) {
   .overlay { max-width: 90%; }
-}
-@media (max-width: 480px) {
-  .overlay { max-width: 95%; }
 }
