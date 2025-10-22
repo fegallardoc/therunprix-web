@@ -8,15 +8,18 @@
 </head>
 <body>
 
-  <!-- 🎥 Video local -->
-  <video id="bgvideo" autoplay muted loop playsinline preload="auto">
-    <source src="runprix2-no-text.mp4" type="video/mp4">
-    Tu navegador no soporta video HTML5.
-  </video>
+  <!-- 🎥 Contenedor del video -->
+  <div class="video-background">
+    <video autoplay muted loop playsinline preload="auto" id="bgvideo">
+      <source src="runprix2-no-text.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <!-- 🟡 Logos -->
-  <img src="Imattgen 1.png" class="overlay" id="logo1" alt="The RUNPRIX Santiago 2026">
-  <img src="Ima4gen 1.png" class="overlay" id="logo2" alt="PRONTO">
+  <div class="overlay">
+    <img src="Imattgen 1.png" id="logo1" alt="The RUNPRIX Santiago 2026">
+    <img src="Ima4gen 1.png" id="logo2" alt="PRONTO">
+  </div>
 
   <!-- ⚙️ Animaciones -->
   <script>
@@ -24,7 +27,8 @@
     const logo2 = document.getElementById('logo2');
     const video = document.getElementById('bgvideo');
 
-    video.addEventListener('loadeddata', () => {
+    // Solo cuando el video carga correctamente
+    video.addEventListener('canplaythrough', () => {
       setTimeout(() => { logo1.classList.add('show'); }, 4100);
       setTimeout(() => {
         logo1.classList.remove('show');
