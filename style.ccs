@@ -1,72 +1,69 @@
-/* Reset básico para eliminar márgenes y asegurar el 100% del viewport */
+/* Reset básico y definición de 100% de altura de la ventana (vh) */
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%; /* Mantener 100% para compatibilidad */
     height: 100vh; /* */
     overflow: hidden; /* Evita barras de desplazamiento */
     font-family: sans-serif;
 }
 
-/* Estilos para el video de fondo */
-#background-video {
-    position: fixed; /* Fija el video en la pantalla */
-    top: 50%;
-    left: 50%;
-    /* Truco para centrar y cubrir completamente el viewport */
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100; /* Lo envía al fondo */
-    transform: translate(-50%, -50%);
-    object-fit: cover; /* Asegura que el video cubra toda el área sin distorsionar la relación de aspecto */
-    filter: brightness(0.8); /* Opcional: Oscurece un poco el video para que el texto resalte */
+/* Contenedor del video: Ocupa todo el espacio de la pantalla */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ocupa el 100% del body (que ahora es 100vh) */
+    z-index: -100;
 }
 
-/* Contenedor para el contenido que va encima del video */
+/* Estilos para el video de fondo dentro de su contenedor */
+#background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra toda el área */
+    filter: brightness(0.8); /* Oscurece un poco el video */
+}
+
+/* Contenedor para el contenido superpuesto */
 .content-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex; /* Permite centrar el contenido */
-    flex-direction: column; /* Apila los elementos verticalmente si hay más de uno */
+    display: flex;
+    flex-direction: column;
     justify-content: center; /* Centrado vertical */
     align-items: center; /* Centrado horizontal */
     text-align: center;
-    pointer-events: none; /* Permite hacer clic a través del overlay si fuera necesario */
+    pointer-events: none;
 }
 
 /* Estilos para las imágenes de texto */
 #logo-principal,
 #logo-pronto {
-    /* Ajuste de tamaño responsivo */
-    max-width: 90%; /* Máximo 90% del ancho del contenedor */
-    width: 1000px; /* Tamaño máximo deseado en pixeles para pantallas grandes */
+    max-width: 90%; 
+    width: 1000px; 
     height: auto;
-    /* Efecto de transición para una aparición suave */
     transition: opacity 1s ease-in-out;
-    opacity: 0; /* Por defecto invisibles, el JS las controla */
+    opacity: 0; /* Oculto por defecto */
     
-    /* Control de posición. Aseguramos que solo uno se muestre a la vez si se superponen. */
     position: absolute; 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-/* Asegura que "PRONTO" se muestre encima de "THE RUNPRIX" si ambos aparecen */
 #logo-pronto {
     z-index: 10; 
 }
 
-/* Opcional: Ajustes para dispositivos muy pequeños (por ejemplo, móviles) */
+/* Opcional: Ajustes para dispositivos muy pequeños */
 @media (max-width: 600px) {
     #logo-principal,
     #logo-pronto {
-        max-width: 95%; /* Un poco más de espacio en el borde */
+        max-width: 95%; 
     }
 }
