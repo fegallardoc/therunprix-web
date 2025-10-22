@@ -1,37 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The RUNPRIX</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE RUNPRIX SANTIAGO 2026</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- 🎥 Video de fondo -->
-  <video id="bgvideo" autoplay muted loop playsinline preload="auto">
-    <source src="runprix2-no-text.mp4" type="video/mp4">
-    Tu navegador no soporta el formato de video.
-  </video>
+    <div class="video-background-wrap">
+        <iframe 
+            src="https://player.vimeo.com/video/1129666217?autoplay=1&loop=1&muted=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+            frameborder="0" 
+            allow="autoplay; fullscreen; picture-in-picture" 
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin" 
+            title="runprix2-no-text">
+        </iframe>
+    </div>
 
-  <!-- 🟡 Logos -->
-  <img src="Imattgen 1.png" class="overlay" id="logo1" alt="The RUNPRIX Santiago 2026">
-  <img src="Ima4gen 1.png" class="overlay" id="logo2" alt="PRONTO">
+    <div class="content-overlay">
+        <img id="logo-principal" src="Imattgen 1.png" class="overlay" alt="The RUNPRIX Santiago 2026">
+        <img id="logo-pronto" src="Ima4gen 1.png" class="overlay" alt="PRONTO">
+    </div>
 
-  <!-- ⚙️ Animaciones -->
-  <script>
-    const logo1 = document.getElementById('logo1');
-    const logo2 = document.getElementById('logo2');
-    const video = document.getElementById('bgvideo');
-
-    // Espera a que el video esté cargado antes de animar los textos
-    video.addEventListener('canplaythrough', () => {
-      setTimeout(() => { logo1.classList.add('show'); }, 4100);
-      setTimeout(() => {
-        logo1.classList.remove('show');
-        logo1.classList.add('hide');
-        logo2.classList.add('show');
-      }, 6300);
+    </body>
+</html>
       setTimeout(() => {
         logo2.classList.remove('show');
         logo2.classList.add('hide');
